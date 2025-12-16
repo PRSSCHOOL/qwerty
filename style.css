@@ -1,0 +1,355 @@
+/* style.css (Светлая тема) */
+
+/* --- ПЕРЕМЕННЫЕ И ОСНОВНЫЕ СТИЛИ --- */
+:root {
+    --primary-color: #007BFF; /* Синий (профессиональный) акцентный цвет */
+    --secondary-color: #FFFFFF; /* Белый фон */
+    --text-color: #333333; /* Темный текст */
+    --card-bg: #F8F8F8; /* Светло-серый фон карточек */
+    --border-color: #E0E0E0; /* Границы */
+    --hover-color: #0056b3;
+    --font-family: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--hover-color);
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* --- КНОПКИ --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.primary-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* --- HEADER / NAVIGATION --- */
+.header {
+    background-color: var(--secondary-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.nav a {
+    margin-left: 25px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    padding: 100px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg); /* Слегка серый фон для контраста */
+}
+
+.hero .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.hero-content h2 {
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.hero-content .btn {
+    margin-right: 15px;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 50%;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.2);
+}
+
+/* --- СЕКЦИИ --- */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--text-color);
+    margin: 10px auto 0;
+}
+
+/* --- ABOUT --- */
+.about p {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.stats-grid div {
+    text-align: center;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.stats-grid span {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+/* --- SKILLS --- */
+.skills {
+    background-color: var(--card-bg);
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.skill-item {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--primary-color);
+    font-weight: 400;
+    transition: background-color 0.3s;
+}
+
+.skill-item:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* --- PORTFOLIO --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    border-top: 4px solid var(--primary-color);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+/* --- CONTACT --- */
+.contact {
+    text-align: center;
+    background-color: var(--secondary-color);
+    padding-bottom: 100px;
+}
+
+.contact-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.contact-links a {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 15px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s;
+    color: var(--text-color);
+}
+
+.contact-links a i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.contact-links a:hover {
+    background-color: #EFEFEF;
+    color: var(--primary-color);
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: #F0F0F0;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- АДАПТИВНОСТЬ (Mobile First) --- */
+@media (max-width: 900px) {
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-image {
+        margin-top: 40px;
+        order: -1; 
+    }
+
+    .header .container {
+        flex-direction: column;
+    }
+
+    .nav {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav a {
+        margin: 5px 10px;
+    }
+
+    .stats-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-links a {
+        margin: 10px 0;
+        display: block;
+    }
+}ы

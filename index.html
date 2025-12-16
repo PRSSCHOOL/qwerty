@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваше Имя — Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* style.css (Светлая тема с корректировками) */
+        /* --- ПЕРЕМЕННЫЕ И ОСНОВНЫЕ СТИЛИ --- */
+        :root {
+            --primary-color: #007BFF; /* Синий (профессиональный) акцентный цвет */
+            --secondary-color: #FFFFFF; /* Белый фон */
+            --text-color: #333333; /* Темный текст */
+            --muted-text: #666666; /* Серый текст */
+            --card-bg: #F8F8F8; /* Светло-серый фон карточек */
+            --border-color: #E0E0E0; /* Границы */
+            --hover-color: #0056b3;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --font-family: 'Roboto', sans-serif;
+        }
+
+        /* --- АНИМАЦИИ (CSS-keyframes) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--hover-color);
+        }
+        
+        p {
+            color: var(--muted-text);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* --- КНОПКИ --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s; 
+            border: 2px solid transparent;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .primary-btn:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-1px);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        /* --- HEADER / NAVIGATION --- */
+        .header {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .nav ul { list-style: none; display: flex; }
+        .nav li { margin-left: 25px; }
+        .nav a {
+            font-weight: 500;
+            color: var(--muted-text);
+        }
+        
+        .nav a:hover {
+             color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 100px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg); /* Светло-серый фон для контраста */
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--primary-color); /* Основной заголовок акцентным цветом */
+        }
+
+        .hero-content h1 strong {
+             color: var(--text-color); /* Добавим контраст к синему */
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            background-color: var(--secondary-color); 
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .hero-image p {
+            margin: 10px 0 5px 0;
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* --- СЕКЦИИ --- */
+        section {
+            padding: 80px 0;
+            animation: fadeIn 1s ease-out; 
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+        
+        /* --- ABOUT --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        /* Установим для десктопа выравнивание по левому краю */
+        .about-content .section-title {
+            text-align: left;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-grid { 
+            display: flex; 
+            justify-content: center; 
+            gap: 40px; 
+            margin-top: 40px; 
+        }
+        
+        .stats-grid div {
+            text-align: center;
+            background-color: var(--secondary-color); 
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border-left: 5px solid var(--primary-color); 
+            transition: transform 0.3s;
+        }
+
+        .stats-grid span { 
+            display: block; font-size: 2.5rem; font-weight: 700; color: var(--primary-color); line-height: 1.2; 
+        }
+        
+        .skills { background-color: var(--card-bg); }
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); /* На десктопе - 4 */
+            gap: 20px; 
+            margin-top: 50px; 
+        }
+        .skill-card { 
+            background-color: var(--secondary-color); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s, box-shadow 0.3s; 
+            min-width: 150px; /* Вернем минимальную ширину для десктопа */
+        }
+        .skill-card:hover { 
+            transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); 
+        }
+        .skill-card i {
+             font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px;
+        }
+
+        .services-grid { 
+             display: grid; 
+             grid-template-columns: repeat(3, 1fr); /* На десктопе - 3 */
+             gap: 30px; 
+             margin-top: 50px; 
+        }
+        .service-card { 
+            background-color: var(--secondary-color); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px var(--shadow-color); border-bottom: 4px solid var(--primary-color); transition: transform 0.3s, box-shadow 0.3s;
+            min-width: 200px; /* Вернем минимальную ширину для десктопа */
+        }
+        .service-card:hover {
+            transform: translateY(-5px); 
+        }
+        
+        /* --- PORTFOLIO (Карусель) --- */
+        .portfolio { padding-bottom: 80px; }
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .scroll-buttons button {
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            padding: 10px 15px;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .scroll-buttons button:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* КНОПКИ НА ДЕСКТОПЕ (от 901px) */
+        @media (min-width: 901px) {
+            .scroll-buttons { display: block; }
+            .portfolio-header .section-title { margin-bottom: 0; }
+        }
+        
+        .portfolio-scroll-container {
+            display: flex;
+            overflow-x: auto; 
+            gap: 30px; 
+            padding: 20px 0;
+            padding-bottom: 40px; 
+            margin-left: -20px; 
+            padding-left: 20px; 
+            margin-right: -20px;
+            padding-right: 20px; 
+            scroll-behavior: smooth; 
+        }
+        
+        /* Стили для скроллбара на десктопе */
+        .portfolio-scroll-container::-webkit-scrollbar { height: 8px; }
+        .portfolio-scroll-container::-webkit-scrollbar-thumb { 
+            background: rgba(0, 123, 255, 0.5); 
+            border-radius: 10px; 
+        }
+        .portfolio-scroll-container::-webkit-scrollbar-track { background: var(--border-color); }
+
+        .project-card {
+            min-width: 320px; 
+            max-width: 320px; 
+            background-color: var(--secondary-color);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .project-card h4 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .project-card .project-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .project-card .project-link i {
+            margin-left: 8px;
+            transition: margin-left 0.2s;
+        }
+
+        /* --- CONTACT (Форма и ссылки) --- */
+        .contact {
+            text-align: center;
+            padding-bottom: 100px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        input, textarea {
+            padding: 18px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2); 
+            outline: none;
+        }
+
+        .contact-links {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px; 
+        }
+        
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.1rem;
+            padding: 12px 25px;
+            border-radius: 6px;
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: background-color 0.3s, transform 0.2s;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .contact-links a:hover {
+            background-color: var(--card-bg);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            color: var(--primary-color);
+        }
+
+        .contact-links a i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--card-bg);
+            padding: 25px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted-text);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- АДАПТИВНОСТЬ (УЛУЧШЕННЫЕ МОБИЛЬНЫЕ СТИЛИ) --- */
+        @media (max-width: 900px) {
+            .hero .container, .about-grid {
+                flex-direction: column;
+                grid-template-columns: 1fr; 
+                text-align: center;
+            }
+            
+            /* Центрируем заголовок "Обо мне" */
+            .about-content {
+                text-align: center; 
+            }
+            .about-content .section-title {
+                text-align: center; 
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem; 
+                order: 1; 
+            }
+            
+            .hero-image {
+                display: none; 
+            }
+            
+            .hero-actions { 
+                justify-content: center; 
+                order: 3;
+            }
+            .btn { 
+                width: 100%; 
+                justify-content: center; 
+                margin-bottom: 10px;
+            } 
+            
+            /* Секция "Обо мне" - статистика (2 в ряд) */
+            .stats-grid {
+                display: flex; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 20px;
+            }
+            
+            .stats-grid div {
+                width: calc(50% - 10px); 
+            }
+            
+            .nav { display: none; }
+            
+            .header .container {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 30px;
+            }
+            
+            .portfolio-header { 
+                flex-direction: column; 
+            }
+            
+            /* СКРЫВАЕМ СТРЕЛКИ НА МОБИЛЬНЫХ (До 900px) */
+            .scroll-buttons { 
+                display: none; 
+            }
+
+            /* Навыки и Услуги: ПРИНУДИТЕЛЬНО 2 В РЯД */
+            .skills-grid, .services-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px;
+            }
+            
+            /* УБИРАЕМ ЖЕСТКИЕ МИНИМАЛЬНЫЕ ШИРИНЫ КАРТОЧЕК НА МОБИЛЬНЫХ,
+               чтобы они могли сжиматься и поместиться в 1fr */
+            .skill-card, .service-card {
+                min-width: auto; 
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .portfolio-scroll-container {
+                margin-left: -15px; 
+                padding-left: 15px; 
+                margin-right: -15px;
+                padding-right: 15px; 
+            }
+            
+            .project-card {
+                min-width: 280px; 
+                max-width: 280px; 
+            }
+            
+            .contact-links a {
+                width: 100%;
+                margin: 5px 0;
+                justify-content: center;
+            }
+            
+            /* Навыки и Услуги: 2 в ряд на узких мобильных */
+            .skills-grid, .services-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+            
+            /* Статистика 2 в ряд на узких мобильных */
+            .stats-grid {
+                gap: 10px; 
+            }
+            .stats-grid div {
+                width: 48%; 
+                padding: 15px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">Ваше Имя</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#skills">Навыки</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li> 
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Современные <strong>сайты</strong> и <strong>веб-приложения</strong></h1>
+                <p>Я веб-разработчик, который создаёт быстрые, удобные и визуально чистые решения для бизнеса и стартапов.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn primary-btn">Обсудить проект</a>
+                    <a href="#portfolio" class="btn secondary-btn">Портфолио</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <h3>Что вы получаете</h3>
+                <p>✔️ Современный дизайн</p>
+                <p>✔️ Адаптив под все устройства</p>
+                <p>✔️ Чистый и поддерживаемый код</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container about-grid">
+            <div class="about-content">
+                <h2 class="section-title">Обо мне</h2>
+                <p>Работаю как с небольшими сайтами, так и с крупными продуктами. Фокус — качество, понятность и долгосрочный результат.</p>
+                <div class="stats-grid">
+                    <div><span>5+</span> лет опыта</div>
+                    <div><span>60+</span> проектов</div>
+                    <div><span>99%</span> Качества</div> 
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://via.placeholder.com/500x550/F8F8F8/007BFF?text=Ваше+Фото" alt="Фотография разработчика">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Frontend</h3>
+                    <p>HTML, CSS, JavaScript, React</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-server"></i>
+                    <h3>Backend</h3>
+                    <p>Node.js, Python, REST API</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <h3>Оптимизация</h3>
+                    <p>Скорость, SEO, UX</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-toolbox"></i>
+                    <h3>Инструменты</h3>
+                    <p>Git, Docker, Figma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Разработка под ключ</h3>
+                    <p>Полный цикл от идеи, дизайна, до запуска готового продукта.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Оптимизация</h3>
+                    <p>Улучшение скорости загрузки, SEO и повышение пользовательского опыта (UX).</p>
+                </div>
+                <div class="service-card">
+                    <h3>Поддержка</h3>
+                    <p>Долгосрочное развитие проекта, добавление нового функционала и сопровождение.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="portfolio-header">
+                <h2 class="section-title">Мои проекты</h2>
+                <div class="scroll-buttons">
+                    <button id="scroll-left" aria-label="Предыдущий проект"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="scroll-right" aria-label="Следующий проект"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="portfolio-scroll-container">
+                <div class="project-card">
+                    <div>
+                        <h4>CRM-система для стартапа</h4>
+                        <p>Полноценный SaaS-продукт на React и Node.js с интеграцией Stripe для подписок.</p>
+                    </div>
+                    <a href="https://site.com/project1" target="_blank" class="project-link">
+                        Перейти на сайт <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>Лендинг для B2B услуг</h4>
+                        <p>Быстрый, адаптивный лендинг с упором на SEO и конверсию. Сбор данных через формы.</p>
+                    </div>
+                    <a href="https://site.com/project2" target="_blank" class="project-link">
+                        Перейти на сайт <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>Мобильное приложение (React Native)</h4>
+                        <p>Прототип приложения для бронирования. Разработка интерфейса и API-интеграция.</p>
+                    </div>
+                    <a href="https://site.com/project3" target="_blank" class="project-link">
+                        Перейти на сайт <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>Корпоративный сайт компании</h4>
+                        <p>Многостраничный сайт с блогом и сложной структурой меню. Полная поддержка и обучение.</p>
+                    </div>
+                    <a href="https://site.com/project4" target="_blank" class="project-link">
+                        Перейти на сайт <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>Онлайн-магазин (E-commerce)</h4>
+                        <p>Интеграция с платежными системами, личный кабинет пользователя, каталог товаров.</p>
+                    </div>
+                    <a href="https://site.com/project5" target="_blank" class="project-link">
+                        Перейти на сайт <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Связаться со мной</h2>
+            
+            <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--text-color);">
+                Опишите ваш проект, задачу или вопрос. Я свяжусь с вами в течение 24 часов.
+            </p>
+            
+            <form class="contact-form" action="https://formspree.io/f/ВАШ_УНИКАЛЬНЫЙ_КОД" method="POST">
+                <input placeholder="Ваше имя" type="text" name="name" required>
+                <input placeholder="Email" type="email" name="_replyto" required>
+                <textarea rows="5" placeholder="Опишите задачу" name="message" required></textarea>
+                <button class="btn primary-btn" type="submit">Отправить сообщение</button>
+            </form>
+            
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+                <a href="https://t.me/your_telegram" target="_blank">
+                    <i class="fa-brands fa-telegram"></i> Telegram
+                </a>
+                <a href="https://wa.me/your_phone" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://github.com/your_github" target="_blank">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        © 2025 Ваше Имя. Все права защищены.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollContainer = document.querySelector('.portfolio-scroll-container');
+            const scrollLeftBtn = document.getElementById('scroll-left');
+            const scrollRightBtn = document.getElementById('scroll-right');
+
+            function getScrollDistance() {
+                const firstCard = scrollContainer.querySelector('.project-card');
+                if (!firstCard) return 350;
+
+                const cardWidth = firstCard.offsetWidth;
+                const style = window.getComputedStyle(scrollContainer);
+                const gapMatch = style.gap.match(/(\d+)/); 
+                const gap = gapMatch ? parseInt(gapMatch[1]) : 30; 
+                
+                return cardWidth + gap;
+            }
+
+            if (scrollLeftBtn) {
+                 scrollLeftBtn.addEventListener('click', () => {
+                    const scrollDistance = getScrollDistance();
+                    scrollContainer.scrollBy({
+                        left: -scrollDistance,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            if (scrollRightBtn) {
+                scrollRightBtn.addEventListener('click', () => {
+                    const scrollDistance = getScrollDistance();
+                    scrollContainer.scrollBy({
+                        left: scrollDistance,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Добавляем возможность скроллить колесом мыши на десктопе
+            if (window.innerWidth > 900) {
+                 scrollContainer.addEventListener('wheel', (e) => {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        scrollContainer.scrollLeft += e.deltaY; 
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
